@@ -11,14 +11,10 @@ static zend_function_entry store_methods[] = {
     {NULL, NULL, NULL}
 };
 
-static zend_function_entry jsonpath_functions[] = {
-    {NULL, NULL, NULL}
-};
-
 zend_module_entry jsonpath_module_entry = {
     STANDARD_MODULE_HEADER,
     PHP_JSONPATH_EXTNAME,
-    jsonpath_functions,
+    NULL,
     PHP_MINIT(jsonpath),
     NULL,
     NULL,
