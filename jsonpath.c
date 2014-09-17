@@ -44,10 +44,19 @@ void jsonpath_init_jsonstore(TSRMLS_D) {
     INIT_CLASS_ENTRY(ce, "Peekmo\\JsonPath\\JsonStore", store_methods);
 
     jsonpath_ce_jsonstore = zend_register_internal_class(&ce TSRMLS_CC);
+
+    zend_declare_property_null(jsonpath_ce_jsonstore, "data", strlen("data"), ZEND_ACC_PRIVATE TSRMLS_CC);
 }
 
 
 // ------------------ Class methods
 PHP_METHOD(JsonStore, __construct) {
-    php_printf("Constructor !");
+    zval* data;
+
+    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z", &data) == FAILURE) {
+        php_printf("FAIL to get parameters from JsonStore constructor");
+        return;
+    }
+
+    zend_update_property(jsonpath_ce_jsonstore, getThis(), "data", strlen("data"), data TSRMLS_CC);
 }
