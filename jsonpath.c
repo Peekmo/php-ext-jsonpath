@@ -45,7 +45,7 @@ void jsonpath_init_jsonstore(TSRMLS_D) {
 
     jsonpath_ce_jsonstore = zend_register_internal_class(&ce TSRMLS_CC);
 
-    zend_declare_property_null(jsonpath_ce_jsonstore, "data", strlen("data"), ZEND_ACC_PRIVATE TSRMLS_CC);
+    zend_declare_property_null(jsonpath_ce_jsonstore, DATA_PROPERTY, DATA_LENGTH, ZEND_ACC_PRIVATE TSRMLS_CC);
 }
 
 
@@ -58,5 +58,5 @@ PHP_METHOD(JsonStore, __construct) {
         return;
     }
 
-    zend_update_property(jsonpath_ce_jsonstore, getThis(), "data", strlen("data"), data TSRMLS_CC);
+    zend_update_property(jsonpath_ce_jsonstore, getThis(), DATA_PROPERTY, DATA_LENGTH, data TSRMLS_CC);
 }

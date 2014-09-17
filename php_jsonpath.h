@@ -3,6 +3,9 @@
 #define PHP_JSONPATH_VERSION "1.0"
 #define PHP_JSONPATH_EXTNAME "jsonpath"
 
+#define DATA_PROPERTY "data"
+#define DATA_LENGTH strlen("data")
+
 void jsonpath_init_jsonstore(TSRMLS_D);
 
 PHP_METHOD(JsonStore, __construct);
