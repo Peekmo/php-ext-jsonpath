@@ -29,7 +29,7 @@ zend_module_entry jsonpath_module_entry = {
 };
 
 // -------------------------------- Install the module
-#ifdef COMPILE_DL_HELLO
+#ifdef COMPILE_DL_JSONPATH
 ZEND_GET_MODULE(jsonpath)
 #endif
 
@@ -41,7 +41,7 @@ PHP_MINIT_FUNCTION(jsonpath) {
 void jsonpath_init_jsonstore(TSRMLS_D) {
     zend_class_entry ce;
 
-    INIT_CLASS_ENTRY(ce, "Peekmo\JsonPath\JsonStore", store_methods);
+    INIT_CLASS_ENTRY(ce, "Peekmo\\JsonPath\\JsonStore", store_methods);
 
     jsonpath_ce_jsonstore = zend_register_internal_class(&ce TSRMLS_CC);
 }
