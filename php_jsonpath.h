@@ -11,6 +11,9 @@ void jsonpath_init_jsonstore(TSRMLS_D);
 
 PHP_METHOD(JsonStore, __construct);
 PHP_METHOD(JsonStore, setData);
+PHP_METHOD(JsonStore, toString);
+PHP_METHOD(JsonStore, toArray);
+PHP_METHOD(JsonStore, toObject);
 
 PHP_MINIT_FUNCTION(jsonpath);
 
