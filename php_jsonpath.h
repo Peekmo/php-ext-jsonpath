@@ -5,10 +5,12 @@
 
 #define DATA_PROPERTY "data"
 #define DATA_LENGTH strlen("data")
+#define DECODE_DEPTH 512
 
 void jsonpath_init_jsonstore(TSRMLS_D);
 
 PHP_METHOD(JsonStore, __construct);
+PHP_METHOD(JsonStore, setData);
 
 PHP_MINIT_FUNCTION(jsonpath);
 
