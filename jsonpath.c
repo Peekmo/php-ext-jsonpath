@@ -5,6 +5,7 @@
 #include "ext/spl/spl_exceptions.h"
 #include "ext/json/php_json.h"
 #include "php_jsonpath.h"
+#include "parser.h"
 
 zend_class_entry* jsonpath_ce_jsonstore;
 
@@ -14,6 +15,7 @@ static zend_function_entry store_methods[] = {
     PHP_ME(JsonStore, toString, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(JsonStore, toArray, NULL, ZEND_ACC_PUBLIC)
     PHP_ME(JsonStore, toObject, NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(JsonStore, get, NULL, ZEND_ACC_PUBLIC)
     {NULL, NULL, NULL}
 };
 
@@ -134,4 +136,21 @@ PHP_METHOD(JsonStore, toObject) {
 
     php_json_encode(&buf, data, 0 TSRMLS_CC);
     php_json_decode_ex(return_value, buf.c, buf.len, (1<<1), DECODE_DEPTH TSRMLS_CC);
+}
+
+PHP_METHOD(JsonStore, get) {
+    char* query;
+    zend_bool unique;
+    int query_len;
+    zval* data;
+    MAKE_STD_ZVAL(data);
+
+    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s|b", &query, &query_len, &unique) == FAILURE) {
+        php_printf("FAIL to get parameters from get()");
+        return;
+    }
+
+    array_init(return_value);
+    data = zend_read_property(jsonpath_ce_jsonstore, getThis(), DATA_PROPERTY, DATA_LENGTH, 0 TSRMLS_CC);
+    return_value = parse_jsonpath(query, data TSRMLS_CC);
 }

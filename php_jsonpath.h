@@ -14,6 +14,7 @@ PHP_METHOD(JsonStore, setData);
 PHP_METHOD(JsonStore, toString);
 PHP_METHOD(JsonStore, toArray);
 PHP_METHOD(JsonStore, toObject);
+PHP_METHOD(JsonStore, get);
 
 PHP_MINIT_FUNCTION(jsonpath);
 
