@@ -1,4 +1,4 @@
-php-ext-jsonpath
+php-ext-jsonpath /!\ WORK IN PROGRESS
 ================
 
 JsonPath C extension for PHP
